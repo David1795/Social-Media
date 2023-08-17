@@ -8,8 +8,6 @@ const jwt = require('jsonwebtoken');
 
 exports.getUsers = asyncHandler(async (req, res, next) => {
     
-   
-
     try{
         const allUsers = await User.find()
         res.status(200).json({

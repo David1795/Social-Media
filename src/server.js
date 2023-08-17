@@ -5,15 +5,28 @@ const cors = require('cors');
 const connectDB = require('./config/config')
 const users = require('./routes/user.routes')
 
+
+
 class server {
     constructor(){
         this.app = express();
         this.app.use(express.json());
+
+        
+
         this.app.use('/api/v1/users', users);
         this.port = process.env.PORT ;
         //conectar a la base de datos
         connectDB();
         this.server = http.createServer(this.app);
+
+        if(process.env.DEVELOPMENT === 'false'){
+
+            this.server.listen(this.port, () => {
+                console.log(`Server running on port ${this.port}`);
+            });
+            
+        }
     }
 
     middlewares(){
@@ -24,10 +37,13 @@ class server {
 
     execute(){
         this.middlewares();
-        this.server.listen(this.port, () => {
-            console.log(`Server running on port ${this.port}`);
-        });
+
+        
+
+        
     }
 }
 
-module.exports = server;
+
+
+module.exports = server  ;
