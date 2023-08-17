@@ -20,13 +20,7 @@ class server {
         connectDB();
         this.server = http.createServer(this.app);
 
-        if(process.env.DEVELOPMENT === 'false'){
-
-            this.server.listen(this.port, () => {
-                console.log(`Server running on port ${this.port}`);
-            });
-            
-        }
+        
     }
 
     middlewares(){
@@ -38,6 +32,10 @@ class server {
     execute(){
         this.middlewares();
 
+        this.server.listen(this.port, () => {
+            console.log(`Server running on port ${this.port}`);
+        });
+        
         
 
         

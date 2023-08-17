@@ -1,11 +1,16 @@
 const serverless = require('serverless-http');
-const Server = require('../Backend/src/server.js')
+const Server = require('../Social-Media/src/server.js')
 require('dotenv').config()
 
 
 const serverInstance = new Server();
 
-serverInstance.execute();
+if(process.env.DEVELOPMENT === 'false'){
+
+    
+     serverInstance.execute();
+    
+}
 
 module.exports.handler = serverless(serverInstance.app);
 
